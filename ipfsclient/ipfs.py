@@ -7,8 +7,6 @@ from typing import List, Self
 
 from multicodec import add_prefix
 
-from protobuf.sample_pb2 import Example
-
 import requests
 
 
@@ -205,23 +203,24 @@ class Ipfs():
         raise NotImplementedError("For now, just use `add` and `delete`")
 
         try:
-            stat = self.stat(filename)
-            dag = self._dag_get(stat["Hash"])
+            pass
+            # stat = self.stat(filename)
+            # dag = self._dag_get(stat["Hash"])
             # print(dag)
             # print(dag["/"]["bytes"].encode)
-            example = Example()
-            example.ParseFromString(dag)
-            self._make_request(
-                endpoint="files/write",
-                params={
-                    "arg": f"{IPFS_HOME}/{filename}",
-                    "truncate": True,
-                    "raw-leaves": True
-                },
-                files={
-                    'file': example.SerializeToString()
-                }
-            )
+            # example = Example()
+            # example.ParseFromString(dag)
+            # self._make_request(
+            #     endpoint="files/write",
+            #     params={
+            #         "arg": f"{IPFS_HOME}/{filename}",
+            #         "truncate": True,
+            #         "raw-leaves": True
+            #     },
+            #     files={
+            #         'file': example.SerializeToString()
+            #     }
+            # )
         except requests.exceptions.HTTPError as e:
             raise RuntimeError(e.response._content.decode()) from e
 

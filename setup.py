@@ -10,7 +10,7 @@ def load_long_description(filename: str) -> str:
 
 setup(
     name="ipfsclient",
-    version="0.0.3",
+    version="0.0.4",
     author="Nathaniel Schultz",
     author_email="nate@nanoswap.finance",
     description="IPFS RPC Client",

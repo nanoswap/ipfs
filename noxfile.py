@@ -27,6 +27,7 @@ def tests(session: nox.Session) -> None:
 def lint(session: nox.Session) -> None:
     """Run the linter checks."""
     session.install('flake8')
+    session.install("-r", "requirements.txt")
 
     # lint the source code
     session.run(
