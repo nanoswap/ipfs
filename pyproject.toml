@@ -1,0 +1,26 @@
+[tool.coverage.paths]
+source = ["ipfsclient", "*/site-packages"]
+
+[tool.coverage.report]
+show_missing = true
+
+[project]
+name = "ipfsclient"
+version = "0.0.1"
+description = "IPFS python client"
+urls = {'Bug Tracker' = 'https://github.com/nanoswap/ipfsclient/issues'}
+classifiers = [
+    'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: The Unlicense (Unlicense)'
+]
+authors = [{'name' = 'Nathaniel Schultz', 'email' = 'nate@nanoswap.finance'}]
+requires-python = '>=3.11'
+readme = 'README.md'
+license = {'file' = 'LICENSE'}
+dependencies = [
+    "requests",
+    "protobuf",
+    "setuptools",
+    "py-multicodec",
+    "pandas",
+]
