@@ -1,5 +1,7 @@
 requests
+protobuf
 setuptools
+py-multicodec
 
 # for testing
 nox
