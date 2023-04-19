@@ -6,7 +6,7 @@ show_missing = true
 
 [project]
 name = "ipfsclient"
-version = "0.0.4"
+version = "0.0.5"
 description = "IPFS python client"
 urls = {'Bug Tracker' = 'https://github.com/nanoswap/ipfsclient/issues'}
 classifiers = [
@@ -20,6 +20,5 @@ license = {'file' = 'LICENSE'}
 dependencies = [
     "requests",
     "setuptools",
-    "py-multicodec",
-    "pandas",
+    "py-multicodec"
 ]
