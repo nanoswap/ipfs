@@ -1,4 +1,3 @@
-__package__ = "ipfsclient"
 import json
 import logging
 import os

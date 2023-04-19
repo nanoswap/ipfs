@@ -4,15 +4,15 @@ import unittest
 from typing import Self
 from unittest.mock import MagicMock, patch
 
-from ipfsclient.ipfs import Ipfs
-
 import requests
+
+from src.ipfsclient.ipfs import Ipfs
 
 
 class TestIpfs(unittest.TestCase):
     """Test the Ipfs Class."""
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_mkdir(self: Self, mock_post: MagicMock) -> None:
         """Test the mkdir function."""
         ipfs = Ipfs()
@@ -24,7 +24,7 @@ class TestIpfs(unittest.TestCase):
             files=None
         )
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_read(self: Self, mock_post: MagicMock) -> None:
         """Test the read function."""
         ipfs = Ipfs()
@@ -37,7 +37,7 @@ class TestIpfs(unittest.TestCase):
         )
         self.assertEqual(result, b"test data")
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_add(self: Self, mock_post: MagicMock) -> None:
         """Test the add function."""
         ipfs = Ipfs()
@@ -54,7 +54,7 @@ class TestIpfs(unittest.TestCase):
             }
         )
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_does_file_exist_true(self: Self, mock_post: MagicMock) -> None:
         """Test with a file that does exist."""
         ipfs = Ipfs()
@@ -67,7 +67,7 @@ class TestIpfs(unittest.TestCase):
         )
         self.assertTrue(result)
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_does_file_exist_false(self: Self, mock_post: MagicMock) -> None:
         """Test with a file that does not exist."""
         ipfs = Ipfs()
@@ -86,7 +86,7 @@ class TestIpfs(unittest.TestCase):
         )
         self.assertFalse(result)
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_stat(self: Self, mock_post: MagicMock) -> None:
         """Test the stat function."""
         ipfs = Ipfs()
@@ -99,7 +99,7 @@ class TestIpfs(unittest.TestCase):
         )
         self.assertEqual(result, {"Type": 2, "CumulativeSize": 0, "Blocks": 0})
 
-    @patch('ipfsclient.ipfs.requests.post')
+    @patch('src.ipfsclient.ipfs.requests.post')
     def test_delete(self: Self, mock_post: MagicMock) -> None:
         """Test the delete function."""
         ipfs = Ipfs()

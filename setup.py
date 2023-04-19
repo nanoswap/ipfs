@@ -10,7 +10,7 @@ def load_long_description(filename: str) -> str:
 
 setup(
     name="ipfsclient",
-    version="0.0.5",
+    version="0.0.6",
     author="Nathaniel Schultz",
     author_email="nate@nanoswap.finance",
     description="IPFS RPC Client",
@@ -24,7 +24,5 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: The Unlicense (Unlicense)"
     ],
-    package_dir={'ipfsclient': "ipfsclient"},
-    packages=find_packages("ipfsclient"),
     python_requires=">=3.11"
 )

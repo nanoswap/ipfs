@@ -5,12 +5,11 @@ import nox
 def build(session: nox.Session) -> None:
     """Build the dist."""
     session.install("build")
-    session.env["PYTHONPATH"] = "ipfsclient"
     session.run("python", "-m", "build")
 
     # publish pip package
-    # session.install("twine")
-    # session.run("twine", "upload", "dist/*")
+    session.install("twine")
+    session.run("twine", "upload", "dist/*")
 
 
 @nox.session(python=["python3.11"])
@@ -19,8 +18,7 @@ def tests(session: nox.Session) -> None:
     session.install("-r", "requirements.txt")
     session.install('pytest')
     session.install("pytest-cov")
-    session.env["PYTHONPATH"] = "ipfsclient"
-    session.run("pytest", "--cov=ipfsclient")
+    session.run("pytest", "--cov=src")
 
 
 @nox.session(python=["python3.11"])
@@ -31,7 +29,7 @@ def lint(session: nox.Session) -> None:
 
     # lint the source code
     session.run(
-        'flake8', 'ipfsclient',
+        'flake8', 'src',
         '--docstring-convention', 'google',
         '--ignore=D100'
     )
