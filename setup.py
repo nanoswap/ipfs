@@ -1,6 +1,8 @@
 """Setup."""
 from setuptools import find_packages, setup
 
+from ipfsclient import __version__
+
 
 def load_long_description(filename: str) -> str:
     """Convert README.md to a string."""
@@ -10,7 +12,7 @@ def load_long_description(filename: str) -> str:
 
 setup(
     name="ipfsclient",
-    version="0.0.6",
+    version=__version__,
     author="Nathaniel Schultz",
     author_email="nate@nanoswap.finance",
     description="IPFS RPC Client",
@@ -24,5 +26,7 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: The Unlicense (Unlicense)"
     ],
-    python_requires=">=3.11"
+    python_requires=">=3.11",
+    package_dir={'ipfsclient': "ipfsclient"},
+    packages=find_packages(exclude=['tests', 'tests.*']),
 )

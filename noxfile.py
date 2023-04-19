@@ -31,7 +31,7 @@ def lint(session: nox.Session) -> None:
     session.run(
         'flake8', 'src',
         '--docstring-convention', 'google',
-        '--ignore=D100'
+        '--ignore=D100,D104'
     )
 
     # lint the tests
