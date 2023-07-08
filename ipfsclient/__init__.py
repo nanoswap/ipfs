@@ -1,4 +1,3 @@
-# flake8: noqa
-__package__ = "ipfsclient"
+from __future__ import annotations
 
-from ipfsclient import ipfs
+__version__ = "0.0.8"
