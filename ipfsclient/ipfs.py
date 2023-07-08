@@ -112,8 +112,10 @@ class Ipfs():
             result = json.loads(response.decode())
             return result["Cid"]["/"]
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def _dag_get(self: Self, filename: str) -> str:
         """Call the dag/get endpoint.
@@ -138,8 +140,10 @@ class Ipfs():
             )
             return json.loads(response.decode())
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def mkdir(self: Self, directory_name: str, with_home: bool = True) -> None:
         """Create a directory in ipfs.
@@ -167,8 +171,10 @@ class Ipfs():
                 raise_for_status=False
             )
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def read(self: Self, filename: str) -> bytes:
         """Read a file from ipfs.
@@ -185,8 +191,10 @@ class Ipfs():
                 params={"arg": f"{IPFS_HOME}/{filename}"},
             )
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def write(self: Self, filename: str, data: bytes) -> None:
         """Overwrite file contents in ipfs.
@@ -251,8 +259,10 @@ class Ipfs():
                 }
             )
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def does_file_exist(self: Self, filename: str) -> bool:
         """Check if a file exists in ipfs.
@@ -271,11 +281,13 @@ class Ipfs():
             )
             return 'file does not exist' not in response.decode()
         except Exception as e:
-            LOG.error(e)
+            LOG.exception(e)
             if 'file does not exist' in e.response._content.decode():
                 return False
 
-            raise RuntimeError(e.response._content.decode()) from e
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def stat(self: Self, filename: str) -> bytes:
         """Call the files/stat endpoint.
@@ -293,8 +305,10 @@ class Ipfs():
                 raise_for_status=False
             ))
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def list_files(self: Self, prefix: str = "") -> List[str]:
         """List the ipfs files in a directory.
@@ -312,8 +326,10 @@ class Ipfs():
                 raise_for_status=False
             ))
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
 
     def delete(self: Self, filename: str) -> None:
         """Delete a file from ipfs.
@@ -331,5 +347,7 @@ class Ipfs():
                 raise_for_status=False
             )
         except Exception as e:
-            LOG.error(e)
-            raise RuntimeError(e.response._content.decode()) from e
+            LOG.exception(e)
+            raise RuntimeError(
+                e.response._content.decode()
+            ) from e if e.response else e
