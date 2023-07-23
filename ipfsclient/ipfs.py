@@ -243,7 +243,7 @@ class Ipfs():
         except requests.exceptions.HTTPError as e:
             raise RuntimeError(e.response._content.decode()) from e
 
-    def add(self: Self, filename: str, data: bytes) -> None:
+    def add(self: Self, filename: str, data: bytes) -> str:
         """Create a new file in ipfs.
 
         This does not work for updating existing files.
@@ -251,6 +251,9 @@ class Ipfs():
         Args:
             filename (str): The filename for the uploaded data
             data (bytes): The data that will be written to the new file
+
+        Returns:
+            str: CID of the added file
         """
         # Split the filename into its directory and basename components
         parts = os.path.split(filename)
@@ -260,7 +263,7 @@ class Ipfs():
             self.mkdir(parts[0])
 
         try:
-            self._make_request(
+            response = self._make_request(
                 endpoint="add",
                 params={
                     "to-files": f"{IPFS_HOME}/{filename}",
@@ -270,6 +273,7 @@ class Ipfs():
                     'file': data
                 }
             )
+            return response.json()["Hash"]
         except Exception as e:
             LOG.exception(e)
             if e.response:
