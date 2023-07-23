@@ -273,12 +273,13 @@ class Ipfs():
                     'file': data
                 }
             )
-            return response.json()["Hash"]
+            response_json = json.loads(response.decode())
+            return response_json["Hash"]
         except Exception as e:
             LOG.exception(e)
             if e.response:
                 raise RuntimeError(
-                    e.response._content.decode()
+                    e.response.decode()
                 ) from e
             else:
                 raise e
