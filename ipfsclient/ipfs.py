@@ -113,7 +113,7 @@ class Ipfs():
             return result["Cid"]["/"]
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -144,7 +144,7 @@ class Ipfs():
             return json.loads(response.decode())
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -178,7 +178,7 @@ class Ipfs():
             )
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -201,47 +201,12 @@ class Ipfs():
             )
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
             else:
                 raise e
-
-    def write(self: Self, filename: str, data: bytes) -> None:
-        """Overwrite file contents in ipfs.
-
-        Args:
-            filename (str): The filename to write to
-            data (bytes): The data to write
-
-        Raises:
-            NotImplementedError: This function is not implemented.
-                For now, just use `add` and `delete`
-        """
-        raise NotImplementedError("For now, just use `add` and `delete`")
-
-        try:
-            pass
-            # stat = self.stat(filename)
-            # dag = self._dag_get(stat["Hash"])
-            # print(dag)
-            # print(dag["/"]["bytes"].encode)
-            # example = Example()
-            # example.ParseFromString(dag)
-            # self._make_request(
-            #     endpoint="files/write",
-            #     params={
-            #         "arg": f"{IPFS_HOME}/{filename}",
-            #         "truncate": True,
-            #         "raw-leaves": True
-            #     },
-            #     files={
-            #         'file': example.SerializeToString()
-            #     }
-            # )
-        except requests.exceptions.HTTPError as e:
-            raise RuntimeError(e.response._content.decode()) from e
 
     def add(self: Self, filename: str, data: bytes) -> str:
         """Create a new file in ipfs.
@@ -277,7 +242,7 @@ class Ipfs():
             return response_json["Hash"]
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response.decode()
                 ) from e
@@ -305,7 +270,7 @@ class Ipfs():
             if 'file does not exist' in e.response._content.decode():
                 return False
 
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -329,7 +294,7 @@ class Ipfs():
             ))
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -353,7 +318,7 @@ class Ipfs():
             ))
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
@@ -377,7 +342,7 @@ class Ipfs():
             )
         except Exception as e:
             LOG.exception(e)
-            if e.response:
+            if hasattr(e, "response"):
                 raise RuntimeError(
                     e.response._content.decode()
                 ) from e
