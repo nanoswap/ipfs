@@ -18,7 +18,7 @@ def tests(session: nox.Session) -> None:
     session.install("-r", "requirements.txt")
     session.install('pytest')
     session.install("pytest-cov")
-    session.run("pytest", "--cov=ipfsclient")
+    session.run("pytest", "--cov=ipfsclient", "--cov-fail-under=80")
 
 
 @nox.session(python=["python3.11"])

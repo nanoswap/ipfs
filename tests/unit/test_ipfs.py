@@ -41,6 +41,8 @@ class TestIpfs(unittest.TestCase):
     def test_add(self: Self, mock_post: MagicMock) -> None:
         """Test the add function."""
         ipfs = Ipfs()
+        mock_post.return_value.content.decode.return_value = \
+            '{"Hash": "some_hash_value"}'
         mock_post.return_value.raise_for_status.return_value = None
         ipfs.add("test_file", b"test data")
         mock_post.assert_called_with(

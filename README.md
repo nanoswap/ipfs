@@ -31,7 +31,7 @@ https://ipfsclient.readthedocs.io/
 `mkdocs serve`
 
 ## Tests
-To only run tests: `pytest`  
+To only run tests: `pytest --cov=ipfsclient --cov-fail-under=80`  
 To run all checks: `nox`
 
 ### Before running tests:
